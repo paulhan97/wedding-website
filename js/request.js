@@ -51,12 +51,15 @@ class GetFormData extends Request {
 class PostCurrentForm extends Request {
     constructor(formId) {
         let formElement = document.getElementById(formId),
-        data = new URLSearchParams(new FormData(formElement)),
+        data = new FormData(formElement),
         headers = {'Content-Type': 'application/x-www-form-urlencoded'},
         path = 'update-rsvp';
 
         super('POST', headers, path);
-        this.body = data;
+        this.body = JSON.stringify({
+            cells: [...data.keys()],
+            values: [...data.values()]
+        });
     }
 }
 
