@@ -6,6 +6,7 @@ class AgeDropDown extends ElementFromTag {
         this.set('name', name);
         this.addClass('drop-down');
         this.addOption('21+');
+        this.addOption('13-20');
         this.addOption('5-12');
         this.addOption('Under 5');
     }

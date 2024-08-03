@@ -1,6 +1,6 @@
 import { Template, SheetsField } from 'base';
 import { ElementFromId, ElementFromTag } from 'element';
-import { Toggle, Label, FlashMessage, InvisibleRow, StandardRadio, TextField } from 'components';
+import { Toggle, Label, FlashMessage, InvisibleRow, StandardRadio, TextField, EmptyRow } from 'components';
 
 class FlightInformation extends Template {
     constructor(progressBar, title, root, data) {
@@ -9,21 +9,35 @@ class FlightInformation extends Template {
 
         this.setProgressBar(2);
         this.setTitle('Please provide your flight information');
+
         this.whiteSpace[1] = 20;
 
         let grid = new ElementFromTag('div');
-        grid.addClass('grid',
-                      'two-auto-cols-plus-two-1fr-cols',
-                      'center-aligned',
-                      'column-gap-30',
-                      'row-gap-10');
+        grid.addClass(
+            'grid',
+            'center-aligned',
+            'column-gap-30'
+        );
         this.subContainers[1] = grid;
 
-        this.outline.push(
-            {name: 'toggle', container: this.root},
-            {name: 'headings', container: grid},
-            {name: 'options', container: grid}
-        );
+        let mediaQuery = window.matchMedia('(min-aspect-ratio: 1.2)');
+
+        if (mediaQuery.matches) {
+            grid.addClass('two-auto-cols-plus-two-1fr-cols', 'row-gap-10');
+
+            this.outline.push(
+                {name: 'toggle', container: this.root},
+                {name: 'headings', container: grid},
+                {name: 'options', container: grid}
+            );
+        } else {
+            grid.addClass('one-auto-col-plus-one-1fr-col', 'row-gap-20');
+
+            this.outline.push(
+                {name: 'toggle', container: this.root},
+                {name: 'mobileOptions', container: grid}
+            );
+        }
     }
 
     build() {
@@ -79,6 +93,85 @@ class FlightInformation extends Template {
 
     get options() {
         return [...this.loadSingleOption(), ...this.loadAllOptions()];
+    }
+
+    get mobileOptions() {
+        let totalOptions = [],
+            singleOptions = this.loadSingleOption(),
+            allOptions = this.loadAllOptions(),
+            heading1 = new ElementFromTag('div'),
+            heading2 = new ElementFromTag('div'),
+            heading3 = new ElementFromTag('div'),
+            heading4 = new ElementFromTag('div');
+
+        singleOptions.forEach(cell => {
+            cell.addClass('text-align-left');
+        });
+
+        allOptions.forEach(cell => {
+            cell.addClass('text-align-left');
+        });
+            
+        heading1.addClass('thick', 'align-self-center', 'text-align-right');
+        heading2.addClass('thick', 'align-self-center', 'text-align-right');
+        heading3.addClass('thick', 'align-self-center', 'text-align-right');
+        heading4.addClass('thick', 'align-self-center', 'text-align-right');
+        
+        heading1.setText('Passenger\u0028s\u0029');
+        heading2.setText('Transport Options');
+        heading3.setText('Arrival to KOA');
+        heading4.setText('Departure from KOA');
+
+        heading1.setData('toggle', 'single-option');
+        heading2.setData('toggle', 'single-option');
+        heading3.setData('toggle', 'single-option');
+        heading4.setData('toggle', 'single-option');
+
+        totalOptions.push(
+            heading1,
+            singleOptions[0],
+            heading2,
+            singleOptions[1],
+            heading3,
+            singleOptions[2],
+            heading4,
+            singleOptions[3]
+        );
+
+        for (let i=0; i<this.data.length; i++) {
+            let headingOne = new ElementFromTag('div'),
+                headingTwo = new ElementFromTag('div'),
+                headingThree = new ElementFromTag('div'),
+                headingFour = new ElementFromTag('div');
+
+            headingOne.addClass('thick', 'align-self-center', 'text-align-right');
+            headingTwo.addClass('thick', 'align-self-center', 'text-align-right');
+            headingThree.addClass('thick', 'align-self-center', 'text-align-right');
+            headingFour.addClass('thick', 'align-self-center', 'text-align-right');
+
+            headingOne.setText('Passenger');
+            headingTwo.setText('Transport Options');
+            headingThree.setText('Arrival to KOA');
+            headingFour.setText('Departure from KOA');
+
+            headingOne.setData('toggle', 'all-options');
+            headingTwo.setData('toggle', 'all-options');
+            headingThree.setData('toggle', 'all-options');
+            headingFour.setData('toggle', 'all-options');
+
+            totalOptions.push(
+                headingOne,
+                allOptions[i*4],
+                headingTwo,
+                allOptions[i*4+1],
+                headingThree,
+                allOptions[i*4+2],
+                headingFour,
+                allOptions[i*4+3],
+            );
+        }
+
+        return totalOptions;
     }
 
     loadSingleOption() {
