@@ -1,11 +1,11 @@
-import {{ CheckListWithName, AirportTransport, BookedFlights }} from './checklists-v{version}.js';
-import {{ AttendanceByEvent }} from './attendance-by-event-v{version}.js';
-import {{ FlightInformation }} from './flight-information-v{version}.js';
-import {{ FoodAllergies }} from './food-allergies-v{version}.js';
-import {{ AgeGroups }} from './age-groups-v{version}.js';
-import {{ WhatsApp }} from './whatsapp-v{version}.js';
+import { CheckListWithName, AirportTransport, BookedFlights } from './checklists.js';
+import { AttendanceByEvent } from './attendance-by-event.js';
+import { FlightInformation } from './flight-information.js';
+import { FoodAllergies } from './food-allergies.js';
+import { AgeGroups } from './age-groups.js';
+import { WhatsApp } from './whatsapp.js';
 
-export {{
+export {
     CheckListWithName,
     AttendanceByEvent,
     AirportTransport,
@@ -14,4 +14,4 @@ export {{
     FoodAllergies,
     AgeGroups,
     WhatsApp
-}};
+};

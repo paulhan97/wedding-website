@@ -31,10 +31,10 @@ class FormHandler {
         this.loading.show();
 
         if (section == 'RSVP_DECLINED') {
-            window.location.replace("http://kimiaandpaul.com/rsvp-declined");
+            window.location.replace("/rsvp-declined");
         }
         if (section == 'RSVP_FINISHED') {
-            window.location.replace('http://kimiaandpaul.com/rsvp-finished');
+            window.location.replace('/rsvp-finished');
         }
 
         if (section == 'GENERAL_ATTENDANCE') {
@@ -43,26 +43,21 @@ class FormHandler {
             this.previousButton.show();
         }
 
-        if (section == 'SONG_REQUESTS') {
-            let templateClass = Router[section].template,
-                template = new templateClass(this.progressBar, this.title, this.root, null);
-            template.build();
-        } else {
-            let request = Router[section].request,
-                responseBody = await request.responseBody;
-            
-            if (section == 'FLIGHT_INFORMATION'
-                && responseBody.length == 0) {
-                this.loadNextSection();
-            }
-            
-            let templateClass = Router[section].template,
-                template = new templateClass(this.progressBar, this.title, this.root, responseBody);
-            template.build();
-
-            this.loading.hide();
-            this.form.show();
+        
+        let request = Router[section].request,
+            responseBody = await request.responseBody;
+        
+        if (section == 'FLIGHT_INFORMATION'
+            && responseBody.length == 0) {
+            this.loadNextSection();
         }
+        
+        let templateClass = Router[section].template,
+            template = new templateClass(this.progressBar, this.title, this.root, responseBody);
+        template.build();
+
+        this.loading.hide();
+        this.form.show();
     }
 
     loadNextSection() {
