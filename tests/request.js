@@ -70,9 +70,9 @@ sectionFiveData = [
         fields: [
             {cell: 'I2', value: 'TRUE'},
             {cell: 'J2', value: 'FALSE'},
-            {cell: 'K2', value: ''},
-            {cell: 'L2', value: ''},
-            {cell: 'M2', value: ''}
+            {cell: 'K2', value: null},
+            {cell: 'L2', value: null},
+            {cell: 'M2', value: null}
         ]
     },
     {
@@ -81,8 +81,8 @@ sectionFiveData = [
             {cell: 'I3', value: 'TRUE'},
             {cell: 'J3', value: 'FALSE'},
             {cell: 'K3', value: 'Arrival Only'},
-            {cell: 'L3', value: ''},
-            {cell: 'M3', value: ''}
+            {cell: 'L3', value: null},
+            {cell: 'M3', value: null}
         ]
     }
 ],

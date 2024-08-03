@@ -1,4 +1,5 @@
 import { ElementFromTag } from 'element';
+import { Radio } from './radio.js'
 
 class Toggle extends ElementFromTag {
     constructor(name, checked) {

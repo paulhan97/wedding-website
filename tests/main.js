@@ -2,7 +2,7 @@ import { FormHandler } from "./form.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     let handler = new FormHandler(
-        'GENERAL_ATTENDANCE',
+        'FLIGHT_INFORMATION',
         'progress-bar',
         'title',
         'root',

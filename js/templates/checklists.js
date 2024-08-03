@@ -67,7 +67,7 @@ class AirportTransport extends CheckListWithName {
         let container = new ElementFromTag('div'),
             arrivalDisclaimer = this.singleLineDisclaimer('\u2731 For arrivals, transportation from KOA to Mauna Lani will only be provided on Wednesday, December 11 and Thursday, December 12'),
             departureDisclaimer = this.singleLineDisclaimer('\u2731 For departures, transportation from Mauna Lani to KOA will only be provided on Sunday, December 15');
-        container.addClass('text-align-left', 'side-padding-50');
+        container.addClass('text-align-left', 'desktop-side-padding-50');
         container.append(arrivalDisclaimer, new EmptyRow(10), departureDisclaimer)
         return [container];
     }

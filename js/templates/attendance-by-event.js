@@ -1,6 +1,6 @@
 import { Template, SheetsField } from 'base';
 import { ElementFromTag } from 'element';
-import { SelectAllButton, CheckBox, SelectColumn } from 'components';
+import { SelectAllButton, CheckBox, SelectColumn, EmptyRow } from 'components';
 
 class AttendanceByEvent extends Template {
     constructor(progressBar, title, root, data) {
@@ -9,25 +9,37 @@ class AttendanceByEvent extends Template {
 
         this.setProgressBar(1);
         this.setTitle('Please mark the event(s) that each person will be attending');
-        this.whiteSpace[1] = 20;
-        this.whiteSpace[4] = 20;
 
-        let grid = new ElementFromTag('div');
-        grid.addClass('grid',
-                      'one-auto-col-plus-three-1fr-cols',
-                      'center-aligned',
-                      'column-gap-10',
-                      'row-gap-10',
-                      'text-align-center');
-        this.subContainers[2] = grid;
+        let mediaQuery = window.matchMedia('(min-aspect-ratio: 1.2)');
 
-        this.outline.push(
-            {name: 'selectAll', container: this.root},
-            {name: 'headings', container: grid},
-            {name: 'selectColumn', container: grid},
-            {name: 'namesAndCheckboxes', container: grid},
-            {name: 'checkAllThatApply', container: this.root}
-        );
+        if (mediaQuery.matches) {
+            this.whiteSpace[1] = 20;
+            this.whiteSpace[4] = 20;
+
+            let grid = new ElementFromTag('div');
+            grid.addClass('grid',
+                        'one-auto-col-plus-three-1fr-cols',
+                        'center-aligned',
+                        'column-gap-10',
+                        'row-gap-10',
+                        'text-align-center');
+            this.subContainers[2] = grid;
+
+            this.outline.push(
+                {name: 'selectAll', container: this.root},
+                {name: 'headings', container: grid},
+                {name: 'selectColumn', container: grid},
+                {name: 'namesAndCheckboxes', container: grid},
+                {name: 'checkAllThatApply', container: this.root}
+            );
+        } else {
+            this.whiteSpace[1] = 20;
+
+            this.outline.push(
+                {name: 'selectAll', container: this.root},
+                {name: 'inviteeGrids', container: this.root}
+            );
+        }
     }
 
     get selectAll() {
@@ -39,7 +51,7 @@ class AttendanceByEvent extends Template {
         let emptyCell = new ElementFromTag('div'),
             welcomeDinner = this.createHeading('12/12/24', 'Welcome Dinner'),
             idolCountdown = this.createHeading('12/13/24', 'Idol Countdown'),
-            ceremonyAndReception = this.createHeading('12/12/24', 'Ceremony \u0026 Reception');
+            ceremonyAndReception = this.createHeading('12/14/24', 'Ceremony \u0026 Reception');
         return [emptyCell, welcomeDinner, idolCountdown, ceremonyAndReception];
     }
 
@@ -76,6 +88,61 @@ class AttendanceByEvent extends Template {
         let p = new ElementFromTag('p');
         p.setText('\u0028check all that apply\u0029');
         return [p];
+    }
+
+    get inviteeGrids() {
+        let inviteeGrids = [],
+            inviteeCount = 1
+        for (const invitee of this.data) {
+            let grid = new ElementFromTag('div'),
+                nameCell = new ElementFromTag('div'),
+                selectColumn = new SelectColumn(inviteeCount),
+                selectColumnText = new ElementFromTag('div'),
+                checkboxes = invitee.fields.map((cell) => {
+                    let field = new SheetsField(cell),
+                        checkbox = new CheckBox(field.cell, field.checked);
+                    checkbox.set('data-col-number', inviteeCount);
+                    return checkbox;
+                }),
+                event1 = new ElementFromTag('div'),
+                event2 = new ElementFromTag('div'),
+                event3 = new ElementFromTag('div');
+
+            nameCell.setText(invitee.name);
+            selectColumnText.setText('\u0028All events\u0029');
+            event1.setText('12/12 - Welcome Dinner');
+            event2.setText('12/13 - Idol Countdown');
+            event3.setText('12/14 - Ceremony \u0026 Reception');
+
+            grid.addClass(
+                'grid',
+                'two-auto-cols',
+                'center-aligned',
+                'column-gap-10',
+                'row-gap-10'
+            );
+            nameCell.addClass('grid-column-span-2', 'thick');
+            selectColumnText.addClass('text-align-left', 'align-self-center');
+            event1.addClass('text-align-left', 'align-self-center');
+            event2.addClass('text-align-left', 'align-self-center');
+            event3.addClass('text-align-left', 'align-self-center');
+
+            grid.append(
+                nameCell,
+                selectColumn,
+                selectColumnText,
+                checkboxes[0],
+                event1,
+                checkboxes[1],
+                event2,
+                checkboxes[2],
+                event3
+            );
+
+            inviteeGrids.push(grid, new EmptyRow(30));
+            inviteeCount++;
+        }
+        return inviteeGrids;
     }
 
     createHeading(eventDate, eventName) {
