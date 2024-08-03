@@ -1,9 +1,9 @@
-import { CheckListWithName, AirportTransport, BookedFlights } from './checklists.js';
-import { AttendanceByEvent } from './attendance-by-event.js';
-import { FlightInformation } from './flight-information.js';
-import { FoodAllergies } from './food-allergies.js';
-import { AgeGroups } from './age-groups.js';
-import { WhatsApp } from './whatsapp.js';
+import { CheckListWithName, AirportTransport, BookedFlights } from './templates/checklists.js';
+import { AttendanceByEvent } from './templates/attendance-by-event.js';
+import { FlightInformation } from './templates/flight-information.js';
+import { FoodAllergies } from './templates/food-allergies.js';
+import { AgeGroups } from './templates/age-groups.js';
+import { WhatsApp } from './templates/whatsapp.js';
 
 export {
     CheckListWithName,
