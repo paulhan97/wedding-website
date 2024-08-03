@@ -61,17 +61,21 @@ class FormHandler {
     }
 
     loadNextSection() {
+        this.form.hide();
+        this.loading.show();
         let postToForm = new PostCurrentForm('form');
-        postToForm.send();
-
-        for (const route of Router[this.currentSection].next) {
-            if (route.condition()) {
-                this.clearRoot();
-                this.loadSection(route.section);
-                this.currentSection = route.section;
-                return;
+        postToForm.send().then(() => {
+            for (const route of Router[this.currentSection].next) {
+                if (route.condition()) {
+                    this.clearRoot();
+                    this.loadSection(route.section);
+                    this.currentSection = route.section;
+                    return;
+                }
             }
-        }
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     loadPreviousSection() {
