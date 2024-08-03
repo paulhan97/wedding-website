@@ -1,0 +1,159 @@
+body, nav, ul, li, p, span, div, h1, section, h2 {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: relative;
+}
+
+#menu .active {
+    color: #555;
+    cursor: default;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+}
+
+#menu .coming-soon {
+    color: #ccc;
+    cursor: url('../images/not-allowed-cursor.png'), default;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    position: relative;
+}
+
+#menu a {
+    color: #000;
+    display: inline-block;
+    font-family: "Raleway", sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    user-select: none;
+}
+
+#menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 50%; /* Start from the center */
+    width: 0; /* Initial width of the line */
+    height: 0.25px; /* Thickness of the line */
+    background-color: #000; /* Line color */
+    transition: width 0.5s, transform 0.5s; /* Smooth transition for width and centering */
+    transform: translateX(-50%); /* Center the line */
+}
+
+#menu a:hover::after {
+    width: 100%; /* Expand line to full width on hover */
+    left: 0; /* Reset left to start expansion from the center */
+    transform: translateX(0%); /* Adjust translation to keep expansion even */
+}
+
+/* Portrait Mode */
+@media screen and (max-aspect-ratio: 1/1) {
+    #hamburger {
+        color: #583d1f;
+        cursor: pointer;
+        display: block;
+        font-size: 10vw;
+        left: 25px;
+        line-height: 100%;
+        position: absolute;
+        top: 25px;
+        user-select: none;
+        z-index: 1000;
+    }
+
+    #menu {
+        background-color: #fff;
+        box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
+        display: block;
+        left: 0;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        width: auto;
+        z-index: 1;
+    }
+
+    #menu ul {
+        list-style-type: none;
+    }
+
+    #menu li {
+        padding: 10px;
+    }
+
+    #menu.hidden {
+        display: none;
+    }
+
+    #page-title {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        color: #583d1f;
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 100%;
+        padding: calc(5vw + 11px) 0;
+        text-align: center;
+    }
+
+    #menu .coming-soon::after {
+        content: "(Coming Soon)";
+        display: block;
+        font-size: 12px;
+    }
+
+}
+
+/* Landscape Mode */
+@media screen and (min-aspect-ratio: 1/1) {
+    header {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    #hamburger {
+        display: none;
+    }
+
+    #menu {
+        background-color: #fff;
+    }
+    
+    #menu ul {
+        align-content: center;
+        column-gap: 50px;
+        display: inline-grid;
+        grid-template-columns: repeat(5, auto);
+        height: 80px;
+        justify-content: center;
+        list-style-type: none;
+        width: 100%;
+    }
+
+    #page-title {
+        display: none;
+    }
+
+    #menu .coming-soon:hover::after {
+        background-color: #333;
+        border-radius: 5px;
+        color: #fff;
+        content: "Coming Soon";
+        display: block;
+        font-size: 12px;
+        left: 50%;
+        padding: 5px;
+        position: absolute;
+        text-align: center;
+        top: 100%;
+        width: 80px;
+    }
+
+}

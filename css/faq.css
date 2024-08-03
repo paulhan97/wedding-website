@@ -1,0 +1,132 @@
+.quick-link {
+    cursor: pointer;
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+}
+
+.faq-block {
+    margin-top: 30px;
+}
+
+.faq-block:first-of-type {
+    margin-top: 0;
+}
+
+.question {
+    color: #583d1f;
+    font-family: "Cinzel", serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.answer {
+    font-family: "Raleway", sans-serif;
+}
+
+.answer p {
+    margin-bottom: 10px;
+}
+
+.answer p:last-of-type {
+    margin-bottom: 0;
+}
+
+.link {
+    color: #555;
+    position: relative;
+    text-decoration: none;
+    width: calc(100vh - 100px);
+}
+
+.link::after {
+    content: "";
+    display: block;
+    height: 0.5px;
+    background: #555;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 100%;
+}
+
+.link[target='_blank']::before {
+    content: '\2750';
+    margin-right: 3px;
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+    main {
+        padding: 50px;
+    }
+
+    main section:first-child {
+        display: none;
+    }
+}
+
+@media screen and (min-aspect-ratio: 1/1) {
+    main {
+        column-gap: 50px;
+        display: grid;
+        grid-template-columns: fit-content(35%) auto;
+    }
+
+    main section:first-child {
+        box-sizing: border-box;
+        height: calc(100vh - 80px);
+        overflow-y: scroll;
+        padding: 50px;
+        padding-right: 0;
+    }
+    
+    main section:last-child {
+        box-sizing: border-box;
+        height: calc(100vh - 80px);
+        overflow-y: scroll;
+        padding: 50px;
+        padding-left: 0;
+    }
+    
+    .hidden-scrollbar {
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    .hidden-scrollbar::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #bbb;
+    }
+
+    .quick-link {
+        margin-bottom: 20px;
+        padding: 5px;
+        padding-left: 15px;
+        position: relative;
+    }
+    
+    .quick-link::after {
+        background-color: #777;
+        content: '';
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 3px;
+    }
+    
+    .quick-link.active::after {
+        background-color: #c5924e;
+    }
+}

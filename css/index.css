@@ -1,0 +1,87 @@
+main {
+    position: relative;
+}
+
+#wedding-summary {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+}
+
+#couple, .wedding-details {
+    color: #583d1f;
+    font-family: "Cinzel", serif;
+    user-select: none;
+}
+
+#couple .inline-spacer {
+    display: inline-block;
+    width: 15px;
+}
+
+/* Portrait Mode */
+@media screen and (max-aspect-ratio: 1/1) {
+    #banner-landscape {
+        display: none;
+    }
+
+    #banner-portrait {
+        height: 100%;
+        object-fit: cover;
+        object-position: right 50%;
+        width: 100%;
+        z-index: -1;
+    }
+
+    #couple, .wedding-details {
+        font-weight: 600;
+    }
+
+    #couple {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    #couple .dash {
+        display: none;
+    }
+
+    .wedding-details {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .wedding-details:last-child {
+        font-size: 16px;
+    }
+
+}
+
+/* Landscape Mode */
+@media screen and (min-aspect-ratio: 1/1) {
+    #banner-landscape {
+        height: calc(100vh - 80px);
+        object-fit: cover;
+        object-position: 50% bottom;
+        width: 100%;
+    }
+
+    #banner-portrait {
+        display: none;
+    }
+
+    #couple {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .wedding-details {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .wedding-details:last-child {
+        font-size: 16px;
+    }
+
+}

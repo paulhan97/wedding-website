@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="format-detection" content="telephone=no"> <!-- Gets rid of auto-phone number detection on Safari -->
+        <link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+        <title>RSVP | Kimia & Paul - Destination Wedding</title>
+        <!-- Import Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.2/build/css/intlTelInput.css">
+        <link rel="stylesheet" href="css/common.css">
+    </head>
+    <body class="bg-off-white">
+        <header class="bg-white">
+            <div class="invisible-row-20"></div>
+            <nav>
+                <ul class="flex column-gap-50 center-aligned
+                           sans-serif thin">
+                    <li><a class="link" href="itinerary">Itinerary</a></li>
+                    <li><a class="link" href="accomodations">Accomodations</a></li>
+                    <li><a class="link" href="faq">FAQ</a></li>
+                    <li class="text-light-gray">Style Guide</li>
+                    <li class="text-light-gray">Our Story</li>
+                </ul>
+            </nav>
+            <div class="invisible-row-20
+                        shadow-bottom-black"></div>
+        </header>
+        <main>
+            <div class="invisible-row-50"></div>
+            <section class="width-60-percent max-width-1000 margin-auto
+                            bg-white">
+                    
+                <div id="progress-bar" class="grid seven-1fr-cols column-gap-1">
+                    <div class="bg-gray height-10"></div>
+                    <div class="bg-gray height-10"></div>
+                    <div class="bg-gray height-10"></div>
+                    <div class="bg-gray height-10"></div>
+                    <div class="bg-gray height-10"></div>
+                    <div class="bg-gray height-10"></div>
+                    <div class="bg-gray height-10"></div>
+                </div>
+                <form id="form" class="side-padding-50 text-align-center display-none">
+                    <div class="empty-row-30"></div>
+                    <h1 id="title" class="serif text-brown thick text-wrap-balance"></h1>
+                    <div class="empty-row-30"></div>
+                    <div class="sans-serif">
+                        <div id="root"></div>
+                        <div class="empty-row-30"></div>
+                        <div class="font-size-20">
+                            <button id="previous-button" class="button">PREVIOUS
+                            </button><span class="empty-column-10">
+                            </span><button id="next-button" class="button">NEXT</button>
+                        </div>
+                    </div>
+                    <div class="invisible-row-50"></div>
+                </form>
+                <div id="loading-container" class="text-align-center">
+                    <div class="empty-row-50"></div>
+                    <div class="loading-loop"><div></div><div></div><div></div><div></div></div>
+                    <div class="empty-row-20"></div>
+                    <p class="sans-serif loading-ellipsis">Loading</p>
+                    <div class="invisible-row-50"></div>
+                </div>
+            </section>
+        </main>
+        <script type="importmap">
+            {
+                "imports": {
+                    "base": "./js/base.js",
+                    "element": "./js/element.js",
+                    "components": "./js/components.js",
+                    "wrappers": "./js/wrappers.js",
+                    "templates": "./js/templates.js",
+                    "form": "./js/form.js",
+                    "router": "./js/router.js",
+                    "intl-tel-input": "https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.2/build/js/intlTelInput.min.js",
+                    "request": "./js/request.js"
+                }
+            }
+        </script>
+        <script type="module" src="js/main.js"></script>
+    </body>
+</html>

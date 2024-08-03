@@ -1,0 +1,164 @@
+main {
+    padding: 50px;
+}
+
+h1 {
+    color: #583d1f;
+    font-family: "Cinzel", serif;
+    margin: 20px 0 5px 0;
+}
+
+h1:first-of-type {
+    margin-top: 0;
+}
+
+p {
+    font-family: "Raleway", sans-serif;
+}
+
+.rate-block {
+    margin: 20px;
+    text-align: center;
+}
+
+.rate-block .rate-heading {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.rate-block .rate-value {
+    font-size: 28px;
+    margin: 5px 0;
+}
+
+small {
+    color: #555;
+    display: block;
+    font-family: "Raleway", sans-serif;
+}
+
+.overflow-to-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.link {
+    color: #555;
+    position: relative;
+    text-decoration: none;
+    width: calc(100vh - 100px);
+}
+
+.link::after {
+    content: "";
+    display: block;
+    height: 0.5px;
+    background: #555;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 100%;
+}
+
+.link[target='_blank']::before {
+    content: '\2750';
+    margin-right: 3px;
+}
+
+.faq-block {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.question, .answer {
+    border: 1px solid #EEE;
+    position: relative;
+}
+
+.question {
+    column-gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 20px;
+}
+
+.collapse-toggle {
+    cursor: pointer;
+    z-index: 10;
+}
+
+.answer {
+    border-top: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    transition: height 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+
+.answer.uncollapsed {
+    height: auto;
+    padding: 20px;
+}
+
+.question::after, .answer::after {
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    width: 5px;
+}
+
+.question::after {
+    background: #c5924e;
+    height: calc(100% + 2px);
+    top: -1px;
+}
+
+.answer::after {
+    background: #486b2d;
+    height: calc(100% + 1px);
+    top: 0;
+}
+
+.bullet-list {
+    margin-left: 20px;
+}
+
+.bullet-list li {
+    font-family: "Raleway", sans-serif;
+    margin-bottom: 3px;
+}
+
+/* Menu-specific styling */
+@media screen and (min-aspect-ratio: 1/1) {
+    .narrowscreen-only {
+        display: none;
+    }
+
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+    .widescreen-only {
+        display: none;
+    }
+
+}
+
+/* 2-Column Mode */
+@media screen and (min-aspect-ratio: 7/6) {
+    body {
+        overflow-x: hidden; /* For some reason there is some extra space on the right-side of the page */
+    }
+
+    main {
+        column-gap: 50px;
+    }
+
+    .half-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+}

@@ -1,0 +1,543 @@
+:root {
+    /* Main Color Palette */
+    --brown: #583d1f;
+    --gold: #c5924e;
+    --dark-gray: #777;
+    --gray: #999;
+    --light-gray: #aaa;
+    --off-white: #f9f9f9;
+    --yellow: #f9eac2;
+    --dark-yellow: #c7bb9b;
+    --blue: #d6e2e7;
+    --dark-blue: #969ea2;
+
+    /* Fonts */
+    --serif: "Cinzel", serif;
+    --sans-serif: "Raleway", sans-serif;
+
+    /* Toggle Dimensions */
+    --toggle-thumb-diameter: 16px;
+    --toggle-padding: 3px;
+    --toggle-height: calc(var(--toggle-padding)
+                               + var(--toggle-thumb-diameter)
+                               + var(--toggle-padding));
+    --toggle-width: calc(var(--toggle-padding)
+                               + var(--toggle-thumb-diameter)
+                               + var(--toggle-thumb-diameter)
+                               + var(--toggle-padding));
+}
+
+
+/*- - - - - - - - - - - - - -
+   Remove Unwanted Defaults
+- - - - - - - - - - - - - - -*/
+body, ul, h1, p {
+    /* Spacing */
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button, select, input, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+/*- - - - -
+   Layout
+- - - - - -*/
+/* Spacing */
+.empty-row-5 {
+    margin-top: 5px;
+}
+
+.empty-row-10 {
+    margin-top: 10px;
+}
+
+.empty-row-20 {
+    margin-top: 20px;
+}
+
+.empty-row-30 {
+    margin-top: 30px;
+}
+
+.empty-row-50 {
+    margin-top: 50px;
+}
+
+.invisible-row-10 {
+    padding-top: 10px;
+}
+
+.invisible-row-20 {
+    padding-top: 20px;
+}
+
+.invisible-row-50 {
+    padding-top: 50px;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.empty-column-10 {
+    margin-left: 10px;
+}
+
+.side-padding-50 {
+    padding: 0 50px;
+}
+
+/* Sizing */
+.width-60-percent {
+    width: 60%;
+}
+
+.width-100-percent {
+    width: 100%;
+}
+
+.max-width-1000 {
+    max-width: 1000px;
+}
+
+.height-10 {
+    height: 10px;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+/* Grid & Flexbox */
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+.column-gap-1 {
+    column-gap: 1px;
+}
+
+.column-gap-5 {
+    column-gap: 5px;
+}
+
+.column-gap-10 {
+    column-gap: 10px;
+}
+
+.column-gap-30 {
+    column-gap: 30px;
+}
+
+.column-gap-50 {
+    column-gap: 50px;
+}
+
+.row-gap-10 {
+    row-gap: 10px;
+}
+
+.grid.center-aligned,
+.flex.center-aligned {
+    justify-content: center;
+}
+
+.seven-1fr-cols {
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.two-auto-cols {
+    grid-template-columns: repeat(2, auto);
+}
+
+.one-auto-col-plus-three-1fr-cols {
+    grid-template-columns: auto repeat(3, 1fr);
+}
+
+.two-auto-cols-plus-two-1fr-cols {
+    grid-template-columns: repeat(2, auto) repeat(2, 2fr);
+}
+
+.one-auto-col-plus-one-1fr-col {
+    grid-template-columns: auto 1fr;
+}
+
+.align-self-center {
+    align-self: center;
+}
+
+.justify-self-center {
+    justify-self: center;
+}
+
+/* Display & Visibility */
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.inline {
+    display: inline;
+}
+
+.display-none {
+    display: none;
+}
+
+
+/*- - - -
+   Text
+- - - - -*/
+/* Font */
+.serif {
+    font-family: var(--serif);
+}
+
+.sans-serif {
+    font-family: var(--sans-serif);
+}
+
+/* Alignment & Text Wrapping */
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+/* Color */
+.text-brown {
+    color: var(--brown);
+}
+
+.text-wrap-balance {
+    text-wrap: balance;
+}
+
+.text-light-gray {
+    color: var(--light-gray);
+}
+
+.text-dark-gray {
+    color: var(--dark-gray);
+}
+
+/* Boldness */
+.thin {
+    font-weight: 300;
+}
+
+.thick {
+    font-weight: 500;
+}
+
+/* Size */
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+
+/* Link */
+.link {
+    /* Remove default */
+    color: inherit;
+    text-decoration: none;
+
+    /* Allow positioning of pseudo-elements */
+    position: relative;
+}
+
+.link::after {
+    /* Underline */
+    content: "";
+    background-color: #aaa;
+    width: 0;
+    height: 1px;
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+
+    /* Transition Settings */
+    transition: all 0.5s ease-out;
+}
+
+.link:hover::after {
+    /* Underline */
+    width: 90%;
+    left: 5%;
+}
+
+/*- - - - - - - - - -
+   Borders & Shadows
+- - - - - - - - - - -*/
+.shadow-bottom-black {
+    box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.6);
+}
+
+/*- - - - - - - - - - -
+   Colored Backgrounds
+- - - - - - - - - - - -*/
+.bg-gold {
+    background-color: var(--gold);
+}
+
+.bg-gray {
+    background-color: var(--gray);
+}
+
+.bg-off-white {
+    background-color: var(--off-white);
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+/*- - - - - - - -
+   Form Elements
+- - - - - - - - -*/
+.button {
+    /* Appearance */
+    background-color: transparent;
+    border: 1px solid #999;
+    padding: 10px 30px;
+
+    /* Interactivity */
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--gold);
+    color: #fff;
+    font-weight: 500;
+}
+
+.checkbox {
+    /* Appearance */
+    border: 1px solid var(--gray);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+
+    /* Allow positioning of radio elements */
+    position: relative;
+}
+
+.checkbox input {
+    appearance: none;
+}
+
+.checkbox:hover,
+.checkbox.hover {
+    box-shadow: 0 0 5px var(--gold);
+}
+
+.checkbox.checked:hover,
+.checkbox.checked.hover {
+    box-shadow: 0 0 5px var(--gray);
+}
+
+.checkbox.checked::after {
+    /* Inner square */
+    content: "";
+    display: block;
+    background-color: var(--gold);
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+}
+
+.flash-message {
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.warning {
+    border: 2px solid var(--dark-yellow);
+    background-color: var(--yellow);
+}
+
+.info {
+    border: 2px solid var(--dark-blue);
+    background-color: var(--blue);
+}
+
+.radio {
+    /* Remove default */
+    appearance: none;
+
+    /* Appearance */
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--gray);
+    border-radius: 50%;
+
+    /* Allow positioning of pseudo-elements */
+    position: relative;
+}
+
+.radio:checked::after {
+    /* Inner circle */
+    content: "";
+    background-color: var(--gold);
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+}
+
+.drop-down {
+    border: 1px solid var(--gray);
+    border-radius: 0;
+    padding: 5px;
+}
+
+.toggle {
+    /* Appearance */
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    background-color: var(--dark-gray);
+    border-radius: calc(var(--toggle-height) / 2);
+
+    /* Interactivity */
+    cursor: pointer;
+
+    /* Allow positioning of thumb */
+    position: relative;
+}
+
+.toggle input {
+    /* Remove default */
+    appearance: none;
+    border: 0;
+}
+
+.toggle.checked {
+    background-color: var(--gold);
+}
+
+.toggle::after {
+    /* Thumb */
+    content: "";
+    background-color: #fff;
+    width: var(--toggle-thumb-diameter);
+    height: var(--toggle-thumb-diameter);
+    border-radius: 50%;
+
+    /* Unchecked position */
+    position: absolute;
+    left: var(--toggle-padding);
+    top: var(--toggle-padding);
+
+    /* Transition settings */
+    transition: all 0.5s ease-out;
+}
+
+.toggle.checked::after {
+    left: calc(var(--toggle-padding) + var(--toggle-thumb-diameter));
+}
+
+.text-input {
+    border: 1px solid var(--gray);
+    padding: 5px;
+}
+
+/*- - - - - - -
+   Animations
+- - - - - - - -*/
+.loading-loop {
+    /* change color here */
+    color: var(--gold);
+}
+
+.loading-loop,
+.loading-loop div {
+  box-sizing: border-box;
+}
+.loading-loop {
+  display: inline-block;
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+.loading-loop div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 144px;
+  height: 144px;
+  margin: 8px;
+  border: 3px solid currentcolor;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentcolor transparent transparent transparent;
+}
+.loading-loop div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.loading-loop div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.loading-loop div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-ellipsis {
+    display: inline-block;
+    position: relative;
+}
+
+.loading-ellipsis::after {
+    overflow: hidden;
+    display: block;
+    animation: ellipsis steps(4, end) 1.5s infinite;
+    content: "\002E \002E \002E";
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    left: calc(100% + 2px);
+    bottom: 0;
+    width: 0;
+}
+
+@keyframes ellipsis {
+    to {
+        width: 16px;
+    }
+}
