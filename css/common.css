@@ -541,3 +541,23 @@ button, select, input, textarea {
         width: 16px;
     }
 }
+
+@media screen and (max-aspect-ratio: 1.2) {
+    .mobile-display-none {
+        display: none;
+    }
+}
+
+@media screen and (min-aspect-ratio: 1.2) {
+    .desktop-width-60-percent {
+        width: 60%;
+    }
+
+    .desktop-display-none {
+        display: none;
+    }
+
+    .desktop-bg-off-white {
+        background-color: var(--off-white);
+    }
+}
