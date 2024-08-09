@@ -1,0 +1,51 @@
+{% if not is_mobile %}
+    {% if transport_request_index == 0 %}
+        {% for heading in ['Route', 'Flight No.', 'No. of Passengers'] %}
+            <div class="heading">{{ heading }}</div>
+        {% endfor %}
+        <div></div>
+    {% endif %}
+{% endif %}
+{% if is_mobile %}
+    <div class="mini-grid" data-remove-index="{{ transport_request_index }}">
+        <div>Route</div>
+{% endif %}
+<div data-remove-index="{{ transport_request_index }}">
+    <select
+        class="dropdown"
+        data-transport-attribute="route"
+        data-transport-index="{{ transport_request_index }}">
+        <option value="arrival">KOA to Mauna Lani</option>
+        <option value="departure">Mauna Lani to KOA</option>
+    </select>
+</div>
+{% if is_mobile %}
+    <div>Flight No.</div>
+{% endif %}
+<div data-remove-index="{{ transport_request_index }}">
+    <textarea
+        rows="1"
+        cols="6"
+        data-transport-attribute="flight_number"
+        data-transport-index="{{ transport_request_index }}"></textarea>
+</div>
+{% if is_mobile %}
+    <div>No. of Passengers</div>
+{% endif %}
+<div data-remove-index="{{ transport_request_index }}">
+    <input
+        type="number"
+        data-transport-attribute="num_passengers"
+        data-transport-index="{{ transport_request_index }}">
+</div>
+<div
+    style="align-self: center;"
+    data-remove-index="{{ transport_request_index }}">
+    <img
+        src="images/minus.svg"
+        class="remove-button"
+        data-remove-index="{{ transport_request_index }}">
+</div>
+{% if is_mobile %}
+    </div>
+{% endif %}

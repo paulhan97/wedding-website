@@ -1,0 +1,9 @@
+<section class="progress-bar">
+    {% for i in range(7) %}
+        {% if i < num_sections_completed %}
+            <div class="completed-mark"></div>
+        {% else %}
+            <div class="incomplete-mark"></div>
+        {% endif %}
+    {% endfor %}
+</section>

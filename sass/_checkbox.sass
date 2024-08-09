@@ -1,0 +1,25 @@
+$gray: #999
+$gold: #c5924e
+    
+.checkbox
+    width: 18px
+    height: 18px
+    border: 1px solid $gray
+    cursor: pointer
+    position: relative
+
+.checkbox:hover, .checkbox.hover
+    box-shadow: 0 0 5px $gold
+
+.checkbox.checked:hover, .checkbox.checked.hover
+    box-shadow: 0 0 5px $gray
+
+.checkbox.checked::after
+    content: ""
+    display: block
+    background-color: $gold
+    width: 16px
+    height: 16px
+    position: absolute
+    left: 1px
+    top: 1px

@@ -1,0 +1,40 @@
+<div id="bulk-select-options">
+    <div class="button" id="select-all">SELECT ALL</div>
+    <div class="button" id="clear-all">CLEAR ALL</div>
+</div>
+<section id="event-form">
+    {% set event_dates = ['12/12/24', '12/13/24', '12/14/24'] %}
+    {% if is_mobile %}
+        {% for invitee_name, event_attendance in data %}
+            <div class="heading">{{ invitee_name }}</div>
+            <div class="mini-grid">
+                {% for event, bool in event_attendance %}
+                    <div
+                        class="checkbox{{ ' checked' if bool else '' }}"
+                        data-invitee="{{ invitee_name }}"
+                        data-event="{{ event }}"
+                        data-value="{{ bool }}"></div>
+                    <div>{{ event_dates[loop.index0] }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div></div>
+        {% for event_date in event_dates %}
+            <div class="heading">{{ event_date }}</div>
+        {% endfor %}
+        {% for invitee_name, event_attendance in data %}
+            <div>{{ invitee_name }}</div>
+            {% for event, bool in event_attendance %}
+                <div
+                    class="checkbox{{ ' checked' if bool else '' }}"
+                    data-invitee="{{ invitee_name }}"
+                    data-event="{{ event }}"
+                    data-value="{{ bool }}"></div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+</section>
+<div style="text-align: center; margin-top: 30px;">
+    (check all that apply)
+</div>

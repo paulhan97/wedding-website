@@ -1,0 +1,15 @@
+<div class="flash-message">
+    <div class="icon"><img src="images/info.svg"></div>
+    <div>
+        <p>WhatsApp will be our primary channel for communicating with the guests. We strongly recommend that at least one person in the party provide a phone number tied to a WhatsApp account.</p>
+    </div>
+</div>
+<section class="two-column-auto">
+    {% for invitee_name, phone_number in data %}
+        <div style="align-self: center;">{{ invitee_name }}</div>
+        <input
+            type="tel"
+            class="international-phone-number"
+            value="{{ phone_number }}">
+    {% endfor %}
+</section>

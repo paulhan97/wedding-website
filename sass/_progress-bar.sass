@@ -1,0 +1,21 @@
+$gold: #c5924e
+$dark-gray: #777
+
+.progress-bar
+    display: grid
+    grid-template-columns: repeat(7, 1fr)
+    column-gap: 2px
+
+.progress-bar
+    .completed-mark, .incomplete-mark
+        height: 10px
+
+    .completed-mark
+        background-color: $gold
+
+    .incomplete-mark
+        background-color: $dark-gray
+
+.completed-progress-bar
+    height: 10px
+    background-color: $gold

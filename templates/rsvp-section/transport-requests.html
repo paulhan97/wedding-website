@@ -1,0 +1,62 @@
+<div class="flash-message">
+    <div class="icon"><img src="images/info.svg"></div>
+    <div>
+        <p>If you will not need any transport provided, move on to the next section.</p>
+        <p>Transportation from KOA to Mauna Lani will be provided on Wednesday, 12/11 and Thursday, 12/12. Transportation from Mauna Lani to KOA will be provided on Sunday, 12/15. If you would like to make use of these services, please add transport request(s) and fill-in the prompted information. You can add a new request by clicking the plus sign below and add submit multiple for different routes or members of your party.</p>
+        <p>For the flight number field, please provide either your last leg arriving in KOA or first leg departing from KOA depending on the route you chose. If you have not booked flights yet, still enter a request and leave the flight number blank.</p>
+    </div>
+</div>
+<div id="flight-info">
+    {% if data | length > 0 %}
+        {% if not is_mobile %}
+            {% for heading in ['Route', 'Flight No.', 'No. of Passengers'] %}
+                <div class="heading">{{ heading }}</div>
+            {% endfor %}
+            <div></div>
+        {% endif %}
+        {% for transport_request in data %}
+            {% if is_mobile %}
+                <div class="mini-grid" data-remove-index="{{ loop.index0 }}">
+                    <div>Route</div>
+            {% endif %}
+            <div data-remove-index="{{ loop.index0 }}">
+                <select
+                    class="dropdown"
+                    data-transport-attribute="route"
+                    data-transport-index="{{ loop.index0 }}">
+                    <option value="arrival" {{ 'selected' if transport_request['route'] == 'arrival' else '' }}>KOA to Mauna Lani</option>
+                    <option value="departure" {{ 'selected' if transport_request['route'] == 'departure' else '' }}>Mauna Lani to KOA</option>
+                </select>
+            </div>
+            {% if is_mobile %}
+                <div>Flight No.</div>
+            {% endif %}
+            <div data-remove-index="{{ loop.index0 }}">
+                <textarea
+                    rows="1"
+                    cols="6"
+                    data-transport-attribute="flight_number"
+                    data-transport-index="{{ loop.index0 }}"></textarea>
+            </div>
+            {% if is_mobile %}
+                <div>No. of Passengers</div>
+            {% endif %}
+            <div data-remove-index="{{ loop.index0 }}">
+                <input
+                    type="number"
+                    data-transport-attribute="num_passengers"
+                    data-transport-index="{{ loop.index0 }}">
+            </div>
+            <img
+                src="images/minus.svg"
+                class="remove-button"
+                data-remove-index="{{ loop.index0 }}">
+            {% if is_mobile %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+<div style="text-align: center; margin-top: 30px;">
+    <img src="images/plus.svg" id="add-button">
+</div>

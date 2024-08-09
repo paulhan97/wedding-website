@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no"> <!-- Gets rid of auto-phone number detection on Safari -->
+        <meta property="og:image" content="images/thumbnail.jpg">
+        <link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+        <title>Home | Kimia & Paul - Destination Wedding</title>
+        <!-- Import Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/shared.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/common.css">
+    </head>
+    <body>
+        <header>
+            <div id="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <nav id="menu" class="hidden">
+                <ul>
+                    <li><a href="itinerary">Itinerary</a></li>
+                    <li><a href="accomodations">Accomodations</a></li>
+                    <li><a href="faq">FAQ</a></li>
+                    <li class="coming-soon">Style Guide</li>
+                    <li class="coming-soon">Our Story</li>
+                </ul>
+            </nav>
+        </header>
+        <main style="text-align: center; padding-top: 100px;">
+            <div>
+                <label for="email" style="font-family: 'Raleway', sans-serif; font-weight: 500; font-size: 20px;">Enter your e-mail</label>
+            </div>
+            <div style="margin-top: 10px; margin-bottom: 30px;">
+                <input class="text-input sans-serif" type="email" name="email" id="email" style="width: 300px; padding: 10px;">
+            </div>
+            <div>
+                <div class="button sans-serif inline">Get Link</div>
+            </div>
+        </main>
+        <script src="js/toggle-menu.js"></script>
+    </body>
+</html>
