@@ -1,6 +1,8 @@
 import { Navigator } from './navigator.js';
 
 const navigator = new Navigator();
+const params = new URLSearchParams(document.location.search);
+const inviteId = params.get('i');
 
 function setByClass(className) {
     let elements = document.getElementsByClassName(className);
@@ -19,6 +21,7 @@ function setByClass(className) {
                 if (numCellsInTransportRequests() == 4) {
                     document.getElementById('flight-info').innerHTML = '';
                 }
+                reindexTransportRequests();
             });
             break;
         case 'next-button':
@@ -30,7 +33,7 @@ function setByClass(className) {
                 }
                 if (navigator.currentPage == 6) {
                     endConditions.isEnd = true;
-                    endConditions.payload = 'fill later';
+                    endConditions.payload = getFinalPayload();
                 }
                 navigator.nextPage(endConditions);
             });
@@ -108,6 +111,33 @@ function numCellsInTransportRequests() {
     return document.getElementById('flight-info').childElementCount;
 }
 
+function reindexTransportRequests() {
+    let removeIndexFields = document.querySelectorAll(`[data-remove-index]`),
+        transportIndexFields = document.querySelectorAll(`[data-transport-index]`),
+        allIndexFields = [...removeIndexFields].concat([...transportIndexFields]),
+        allIndices = [];
+    
+    for (let indexField of allIndexFields) {
+        if ('removeIndex' in indexField.dataset) {
+            allIndices.push(indexField.dataset.removeIndex);
+        }
+        if ('transportIndex' in indexField.dataset) {
+            allIndices.push(indexField.dataset.transportIndex);
+        }
+    }
+
+    let dedup = [...new Set(allIndices)];
+
+    for (let indexField of allIndexFields) {
+        if ('removeIndex' in indexField.dataset) {
+            indexField.dataset.removeIndex = dedup.indexOf(indexField.dataset.removeIndex);
+        }
+        if ('transportIndex' in indexField.dataset) {
+            indexField.dataset.transportIndex = dedup.indexOf(indexField.dataset.transportIndex);
+        }
+    }
+}
+
 function hasAtLeastOneAttending() {
     let isAttendingBoxes = document.querySelectorAll('[data-attribute="is_attending"]');
     for (const isAttendingBox of isAttendingBoxes) {
@@ -116,6 +146,93 @@ function hasAtLeastOneAttending() {
         }
     }
     return false;
+}
+
+function getFinalPayload() {
+    let invitees_dict = {};
+    invitees_dict = addIsAttending(invitees_dict);
+    invitees_dict = addEventsObject(invitees_dict);
+    invitees_dict = addAgeGroupAndPhoneNumber(invitees_dict);
+    let rsvp_dict = flattenInviteesDict(invitees_dict);
+    rsvp_dict['invite_id'] = inviteId;
+    rsvp_dict['transport_requests'] = getAllTransportRequests();
+    rsvp_dict['food_allergies'] = getTextAreaValue('food-allergies-input');
+    rsvp_dict['song_requests'] = getTextAreaValue('song-requests-input');
+    return rsvp_dict;
+}
+
+function addIsAttending(dict) {
+    let isAttendingBoxes = document.querySelectorAll('[data-attribute="is_attending"]');
+
+    for (const isAttendingBox of isAttendingBoxes) {
+        dict[isAttendingBox.dataset.invitee] = {
+            'is_attending': (isAttendingBox.dataset.value === 'true')
+        };
+    }
+
+    return dict;
+}
+
+function addEventsObject(dict) {
+    let eventBoxes = document.querySelectorAll('[data-event]');
+
+    for (const eventBox of eventBoxes) {
+        if (!('event_attendance' in dict[eventBox.dataset.invitee])) {
+            dict[eventBox.dataset.invitee]['event_attendance'] = {};
+        }
+        dict[eventBox.dataset.invitee]['event_attendance'][eventBox.dataset.event] = (eventBox.dataset.value === 'true');
+    }
+
+    return dict;
+}
+
+function addAgeGroupAndPhoneNumber(dict) {
+    let ageGroupSelects = document.querySelectorAll('[data-attribute="age_group"]'),
+        phoneNumberSelects = document.querySelectorAll('[data-attribute="phone_number"]');
+
+    for (let i=0; i < ageGroupSelects.length; i++) {
+        let ags = ageGroupSelects[i],
+            pns = phoneNumberSelects[i];
+        dict[ags.dataset.invitee]['age_group'] = ags.value;
+        dict[pns.dataset.invitee]['phone_number'] = pns.value;
+    }
+
+    return dict;
+}
+
+function flattenInviteesDict(dict) {
+    let newDict = {'invitees': []};
+    for (let [inviteeName, invitee] of Object.entries(dict)) {
+        invitee['name'] = inviteeName;
+        newDict['invitees'].push(invitee);
+    }
+    return newDict;
+}
+
+function getAllTransportRequests() {
+    let transportRequestFields = document.querySelectorAll('[data-transport-attribute]');
+    if (transportRequestFields.length > 0) {
+        let transportRequests = {}
+        for (let trs of transportRequestFields) {
+            let index = trs.dataset.transportIndex,
+                attribute = trs.dataset.transportAttribute,
+                value = (attribute == 'num_passengers') ? parseInt(trs.value) : trs.value;
+            if (!(index in transportRequests)) {
+                transportRequests[index] = {};
+            }
+            transportRequests[index][attribute] = value;
+        }
+        let asList = [];
+        for (let index in transportRequests) {
+            asList[index] = transportRequests[index];
+        }
+        return asList;
+    }
+    return [];
+}
+
+function getTextAreaValue(textAreaId) {
+    return document.getElementById(textAreaId).value;
 }
 
 export { setByClass, setById };

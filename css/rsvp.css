@@ -160,7 +160,7 @@ input[type=number] {
   cursor: pointer;
 }
 
-#allergy-input {
+.wide-textarea {
   width: 100%;
 }
 

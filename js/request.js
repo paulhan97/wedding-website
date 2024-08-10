@@ -60,4 +60,4 @@ class PostCurrentForm extends Request {
     }
 }
 
-export { GetFormData, PostCurrentForm };
+export { Request, GetFormData, PostCurrentForm };

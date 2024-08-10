@@ -1,3 +1,5 @@
+import { Request } from "./request.js";
+
 class Navigator {
     constructor(dataManager) {
         this.currentPage = 0;
@@ -45,7 +47,13 @@ class Navigator {
     }
 
     jumpToEnd(payload) {
-        document.getElementsByTagName('main')[0].innerHTML = nunjucks.render('templates/rsvp-finished.html', payload);
+        let postRequest = new Request('POST', {'Content-Type': 'application/json'}, 'post_rsvp_data');
+        postRequest.body = JSON.stringify(payload);
+        postRequest.send().then(response => {
+            if (response.ok) {
+                document.getElementsByTagName('main')[0].innerHTML = nunjucks.render('templates/rsvp-finished.html', payload);
+            }
+        });
     }
 }
 
