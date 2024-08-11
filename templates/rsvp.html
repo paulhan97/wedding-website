@@ -1,0 +1,22 @@
+{% macro get(template_type, name) %}
+    {% set template_type_mapping = {
+        'partials': 'templates/partials/',
+        'rsvp_section': 'templates/rsvp-section/'
+    } %}
+    {% include template_type_mapping[template_type] + name + '.html' %}
+{% endmacro %}
+
+{{ get('partials', 'progress-bar') }}
+
+<section class="main-body">
+    <h1 class="prompt">{{ prompt }}</h1>
+
+    {{ get('rsvp_section', rsvp_section) }}
+
+    <section class="buttons">
+        {% if num_sections_completed > 0 %}
+            <div class="button previous-button">PREVIOUS</div>
+        {% endif %}
+        <div class="button next-button">{% if num_sections_completed == 6 %}SUBMIT{% else %}NEXT{% endif %}</div>
+    </section>
+</section>

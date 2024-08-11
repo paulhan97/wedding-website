@@ -1,0 +1,13 @@
+<div style="text-align: center; margin-bottom: 20px;">
+    (check all who apply)
+</div>
+<section class="checklist">
+    {% for invitee_name, bool in data %}
+        <div
+            class="checkbox{{ ' checked' if bool else '' }}"
+            data-invitee="{{ invitee_name }}"
+            data-attribute="{{ attribute }}"
+            data-value="{{ bool }}"></div>
+        <div>{{ invitee_name }}</div>
+    {% endfor %}
+</section>

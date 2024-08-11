@@ -1,0 +1,13 @@
+<div class="completed-progress-bar"></div>
+
+<section class="main-body">
+    {% if is_declined %}
+        <h1 class="prompt">Thank you for your response</h1>
+        <p class="text-wrap-balance" style="margin-bottom: 10px;">Your presence will be dearly missed, but nonetheless, Kimia and Paul are grateful beyond words to call you family or friend.</p>
+        <p class="text-wrap-balance">At any point if you wish to change your response, you may do so up until October 10.</p>
+    {% else %}
+        <h1 class="prompt">We can't wait to see you!</h1>
+        <p class="text-wrap-balance" style="margin-bottom: 10px;">If you provided a number, you will get an invite to the WhatsApp group soon.</p>
+        <p class="text-wrap-balance">At any point, if you have not done so already, you can resubmit the form to update any information &lpar;e.g. transportation, flights&rpar;</p>
+    {% endif %}
+</section>

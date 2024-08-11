@@ -1,0 +1,162 @@
+$off-white: #f9f9f9
+$brown: #583d1f
+$gray: #999
+$gold: #c5924e
+$serif: "Cinzel", serif
+$sans-serif: "Raleway", sans-serif
+
+@use 'remove-defaults'
+@use 'progress-bar'
+@use 'checkbox'
+@use 'button'
+
+.main-body
+    padding: 50px
+    font-family: $sans-serif
+
+.prompt
+    color: $brown
+    font-family: $serif
+    text-align: center
+    text-wrap: balance
+    font-size: 28px
+    font-weight: 500
+    margin-bottom: 30px
+
+.buttons
+    margin-top: 50px
+    text-align: center
+
+.checklist
+    display: grid
+    grid-template-columns: repeat(2, auto)
+    justify-content: center
+    column-gap: 5px
+    row-gap: 5px
+
+.heading
+    font-weight: 500
+
+#bulk-select-options
+    text-align: center
+    margin-bottom: 30px
+
+#bulk-select-options
+    .button
+        font-size: 13px
+
+.flash-message
+    border-radius: 5px
+    padding: 10px 20px
+    display: flex
+    column-gap: 20px
+
+.flash-message
+    .icon
+        align-self: center
+    
+    .icon
+        img
+            width: 25px
+
+    p
+        margin-bottom: 10px
+        line-height: 24px
+
+.dropdown, textarea, input[type="number"], .international-phone-number
+    border: 1px solid $gray
+    padding: 5px
+
+.dropdown
+    font-size: 14px
+
+input[type="number"]
+    width: 50px
+
+#add-button
+    width: 30px
+    filter: invert(66%) sepia(24%) saturate(922%) hue-rotate(355deg) brightness(88%) contrast(86%)
+    cursor: pointer
+
+.remove-button
+    width: 25px
+    filter: invert(66%) sepia(2%) saturate(4%) hue-rotate(338deg) brightness(94%) contrast(84%)
+    cursor: pointer
+
+.wide-textarea
+    width: 100%
+
+#flight-info
+    margin-top: 30px
+
+.two-column-auto
+    display: grid
+    grid-template-columns: repeat(2, auto)
+    column-gap: 10px
+    row-gap: 5px
+    justify-content: center
+
+
+@media screen and (max-aspect-ratio: 1.2)
+    .main-body
+        padding-top: 100px
+
+    #event-form
+        .heading
+            text-align: center
+            margin-bottom: 20px
+
+        .mini-grid
+            display: grid
+            grid-template-columns: repeat(2, auto)
+            column-gap: 20px
+            row-gap: 10px
+            margin-bottom: 30px
+            justify-content: center
+
+    #flight-info
+        .mini-grid
+            display: grid
+            grid-template-columns: repeat(2, auto)
+            column-gap: 20px
+            row-gap: 10px
+            margin-bottom: 30px
+            justify-content: center
+
+
+@media screen and (min-aspect-ratio: 1.2)
+    body
+        background-color: $off-white
+        padding: 100px 0
+
+    main
+        width: 60%
+        margin: auto
+        background-color: #fff
+
+    #event-form
+        display: grid
+        grid-template-columns: auto repeat(3, 1fr)
+        column-gap: 20px
+        row-gap: 10px
+
+    #event-form
+        .heading, .checkbox
+            justify-self: center
+
+    #flight-info
+        display: grid
+        grid-template-columns: repeat(4, auto)
+        column-gap: 10px
+        row-gap: 5px
+        justify-content: center
+
+    #flight-info
+        div
+            justify-self: center
+
+        .heading
+            justify-self: left
+
+    .remove-button
+        align-self: center

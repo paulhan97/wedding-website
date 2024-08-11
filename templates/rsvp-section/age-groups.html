@@ -1,0 +1,14 @@
+<section class="two-column-auto">
+    {% for invitee_name, age_group in data %}
+        <div style="align-self: center;">{{ invitee_name }}</div>
+        <select
+            class="dropdown"
+            data-invitee="{{ invitee_name }}"
+            data-attribute="age_group">
+
+            {% for value in ['21+', '12-20', '5-12', 'Under 5'] %}
+                <option value="{{ value }}" {{ 'selected' if age_group == value else '' }}>{{ value }}</option>
+            {% endfor %}
+        </select>
+    {% endfor %}
+</section>
