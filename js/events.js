@@ -29,7 +29,10 @@ function setByClass(className) {
                 let endConditions = {isEnd: false};
                 if (!hasAtLeastOneAttending()) {
                     endConditions.isEnd = true;
-                    endConditions.payload = {is_declined: true};
+                    endConditions.payload = {
+                        invite_id: inviteId,
+                        is_declined: true
+                    };
                 }
                 if (navigator.currentPage == 6) {
                     endConditions.isEnd = true;
